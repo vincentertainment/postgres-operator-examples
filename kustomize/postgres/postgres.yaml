@@ -5,10 +5,22 @@ metadata:
 spec:
   image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres:ubi8-14.7-0
   postgresVersion: 14
+  service:
+    metadata:
+      annotations:
+        my-annotation: value1
+      labels:
+        my-label: value2
+    type: LoadBalancer
+    ports:
+      - protocol: TCP
+        port: 32000
+        targetport: 32000
   instances:
     - name: instance1
       replicas: 2
       dataVolumeClaimSpec:
+        storageClassName: nfs-client-qnap
         accessModes:
           - "ReadWriteOnce"
         resources:
@@ -30,14 +42,25 @@ spec:
       postgresql:
         parameters:
           synchronous_commit: "on"
-
   backups:
     pgbackrest:
+      manual:
+        repoName: repo1
+        options:
+          - --type=full
       image: registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.41-4
+      global:
+        repo1-path: /pgbackrest/postgres-operator/hippo/repo1
+        repo1-retention-full: "14"
+        repo1-retention-full-type: time
       repos:
         - name: repo1
+          schedules:
+            full: "0 1 * * 0"
+            differential: "0 1 * * 1-6"
           volume:
             volumeClaimSpec:
+              storageClassName: nfs-client-qnap
               accessModes:
                 - "ReadWriteOnce"
               resources:
