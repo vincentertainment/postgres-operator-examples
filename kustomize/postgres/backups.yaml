@@ -1,0 +1,26 @@
+apiVersion: v1
+spec:
+  backups:
+    pgbackrest:
+      manual:
+        repoName: repo1
+        options:
+          - --type=full
+      image: registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.41-4
+      global:
+        repo1-path: /pgbackrest/postgres-operator/hippo/repo1
+        repo1-retention-full: "14"
+        repo1-retention-full-type: time
+      repos:
+        - name: repo1
+          schedules:
+            full: "0 1 * * 0"
+            differential: "0 1 * * 1-6"
+          volume:
+            volumeClaimSpec:
+              storageClassName: nfs-client-qnap
+              accessModes:
+                - "ReadWriteOnce"
+              resources:
+                requests:
+                  storage: 1Gi
