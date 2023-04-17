@@ -1,4 +1,10 @@
 namespace: postgres-operator
 
 resources:
-- postgres.yaml
+  - postgres.yaml
+
+patches:
+  - backups.yaml
+  - patroni.yaml
+  - replicas.yaml
+  - users.yaml
