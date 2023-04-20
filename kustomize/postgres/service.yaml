@@ -4,13 +4,5 @@ metadata:
   name: hippo
 spec:
   service:
-    metadata:
-      annotations:
-        my-annotation: value1
-      labels:
-        my-label: value2
     type: LoadBalancer
-    ports:
-      - protocol: TCP
-        port: 32000
-        targetport: 32000  
+    nodePort: 5432

@@ -21,9 +21,9 @@ spec:
         - name: DB_VENDOR
           value: "postgres"
         - name: DB_ADDR
-          valueFrom: { secretKeyRef: { name: keycloakdb-pguser-keycloakdb, key: host } }
+          valueFrom: { secretKeyRef: { name: keycloakdb-pguser-keycloakdb, key: pgbouncer-host } }
         - name: DB_PORT
-          valueFrom: { secretKeyRef: { name: keycloakdb-pguser-keycloakdb, key: port } }
+          valueFrom: { secretKeyRef: { name: keycloakdb-pguser-keycloakdb, key: pgbouncer-port } }
         - name: DB_DATABASE
           valueFrom: { secretKeyRef: { name: keycloakdb-pguser-keycloakdb, key: dbname } }
         - name: DB_USER

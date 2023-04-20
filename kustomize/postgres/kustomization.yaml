@@ -8,3 +8,5 @@ patches:
   - patroni.yaml
   - replicas.yaml
   - users.yaml
+  - exporter.yaml
+  - service.yaml

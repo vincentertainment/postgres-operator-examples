@@ -1,5 +1,8 @@
 namespace: postgres-operator
 
 resources:
-- postgres.yaml
-- keycloak.yaml
+  - postgres.yaml
+  - keycloak.yaml
+
+patches:
+  - volumes.yaml

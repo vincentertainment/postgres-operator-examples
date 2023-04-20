@@ -3,17 +3,10 @@ kind: PostgresCluster
 metadata:
   name: hippo
 spec:
-  instances:
-    - name: instance1
-      replicas: 3
-      minAvailable: 1
-      dataVolumeClaimSpec:
-        storageClassName: nfs-client-qnap
-        accessModes:
-          - "ReadWriteOnce"
-        resources:
-          requests:
-            storage: 1Gi
+  proxy:
+    pgBouncer:
+      image: registry.developers.crunchydata.com/crunchydata/crunchy-pgbouncer:ubi8-1.18-0
+      replicas: 2
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -23,4 +16,4 @@ spec:
                 labelSelector:
                   matchLabels:
                     postgres-operator.crunchydata.com/cluster: hippo
-                    postgres-operator.crunchydata.com/instance-set: instance1
+                    postgres-operator.crunchydata.com/role: pgbouncer
