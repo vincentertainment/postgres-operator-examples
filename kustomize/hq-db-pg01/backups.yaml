@@ -1,7 +1,8 @@
 apiVersion: postgres-operator.crunchydata.com/v1beta1
 kind: PostgresCluster
 metadata:
-  name: hippo
+  name: hq-db-pg01
+  namespace: postgres-operator
 spec:
   backups:
     pgbackrest:
@@ -11,7 +12,7 @@ spec:
           - --type=full
       image: registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.41-4
       global:
-        repo1-path: /pgbackrest/postgres-operator/hippo/repo1
+        repo1-path: /pgbackrest/postgres-operator/hq-db-pg01/repo1/
         repo1-retention-full: "14"
         repo1-retention-full-type: time
       repos:

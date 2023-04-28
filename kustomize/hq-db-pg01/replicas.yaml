@@ -1,7 +1,8 @@
 apiVersion: postgres-operator.crunchydata.com/v1beta1
 kind: PostgresCluster
 metadata:
-  name: hippo
+  name: hq-db-pg01
+  namespace: postgres-operator
 spec:
   instances:
     - name: instance1
@@ -22,5 +23,5 @@ spec:
                 topologyKey: kubernetes.io/hostname
                 labelSelector:
                   matchLabels:
-                    postgres-operator.crunchydata.com/cluster: hippo
+                    postgres-operator.crunchydata.com/cluster: hq-db-pg01
                     postgres-operator.crunchydata.com/instance-set: instance1

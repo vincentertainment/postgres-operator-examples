@@ -1,0 +1,19 @@
+apiVersion: postgres-operator.crunchydata.com/v1beta1
+kind: PostgresCluster
+metadata:
+  name: hq-db-pg01
+  namespace: postgres-operator
+spec:
+  users:
+    - name: postgres
+    - name: vincent
+      databases:
+        - test01
+      options: "SUPERUSER"
+    - name: freshrss
+      databases:
+        - freshrss
+    - name: nextcloud
+      databases:
+        - nextcloud-test
+        - nextcloud

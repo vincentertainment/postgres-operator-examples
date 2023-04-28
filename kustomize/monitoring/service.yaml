@@ -25,7 +25,7 @@ metadata:
     name: crunchy-grafana
   name: crunchy-grafana
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
   - name: grafana
     port: 3000
@@ -43,7 +43,7 @@ metadata:
     name: crunchy-prometheus
   name: crunchy-prometheus
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
   - name: prometheus
     port: 9090

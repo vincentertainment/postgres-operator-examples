@@ -1,0 +1,10 @@
+apiVersion: postgres-operator.crunchydata.com/v1beta1
+kind: PostgresCluster
+metadata:
+  name: hippo-ha
+spec:
+  proxy:
+    pgBouncer:
+      service:
+        type: LoadBalancer
+        nodePort: 5432

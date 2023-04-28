@@ -1,8 +1,9 @@
 apiVersion: postgres-operator.crunchydata.com/v1beta1
 kind: PostgresCluster
 metadata:
-  name: hippo
+  name: hq-db-pg01
+  namespace: postgres-operator
 spec:
   service:
     type: LoadBalancer
-    nodePort: 5432
+    nodePort: 32001
